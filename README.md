@@ -15,6 +15,14 @@ This will eventually merge in some work from other forks and projects as needed:
 * [daimatz/arch64-packer](https://github.com/daimatz/arch64-packer), [medvid/arch-packer](https://github.com/medvid/arch-packer) and [takei-shg/arch64-packer](https://github.com/takei-shg/arch64-packer/tree/jdk)
 * Perhaps some of the work from [terrywang/vagrantboxes](https://github.com/terrywang/vagrantboxes/blob/master/archlinux-x86_64.md)
 
+Status
+------
+
+Puppet:
+
+My original install instructions mentioned AUR requirements of ``ruby-augeas`` and ``ruby-r10k``. The [ruby-r10k package](http://webcache.googleusercontent.com/search?q=cache:TI4BTNXI_TYJ:https://aur4.archlinux.org/packages/ruby-r10k/+&cd=1&hl=en&ct=clnk&gl=us)
+had no maintainer and is now gone from AUR (and, as far as I can tell, the pkgbuild with it). I'm not yet sure if puppet 4 (in the community repo) still requires [ruby-augeas](https://aur.archlinux.org/packages/ruby-augeas/). We won't need r10k, as that can be done on the host.
+
 Overview
 --------
 
