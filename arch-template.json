@@ -2,7 +2,8 @@
     "variables": {
         "iso_url": "https://mirrors.kernel.org/archlinux/iso/2015.08.01/archlinux-2015.08.01-dual.iso",
         "iso_checksum": "e98320cd5f0c346fff4140af0b5ffadd59849168",
-        "iso_checksum_type": "sha1"
+        "iso_checksum_type": "sha1",
+        "box_version": null
     },
     "builders": [
         {
@@ -18,7 +19,7 @@
                 "<enter><wait10><wait10>",
                 "/usr/bin/curl -O http://{{.HTTPIP}}:{{.HTTPPort}}/install-virtualbox.sh<enter><wait5>",
                 "/usr/bin/curl -O http://{{.HTTPIP}}:{{.HTTPPort}}/poweroff.timer<enter><wait5>",
-                "/usr/bin/bash ./install-virtualbox.sh<enter>"
+                "/usr/bin/bash ./install-virtualbox.sh {{user `box_version`}} {{user `box_name`}} {{timestamp}}<enter>"
             ],
             "disk_size": 20480,
             "hard_drive_interface": "sata",
@@ -30,7 +31,7 @@
     "post-processors": [
         {
             "type": "vagrant",
-            "output": "packer_arch_{{.Provider}}.box"
+            "output": "packer_arch_{{.Provider}}_{{user `box_version`}}.box"
         }
     ]
 }

@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+BOX_VERSION=$1
+BOX_NAME=$2
+BOX_TIMESTAMP=$3
+
 DISK='/dev/sda'
 FQDN='vagrant-arch.vagrantup.com'
 KEYMAP='us'
@@ -90,6 +94,11 @@ rm "${TARGET_DIR}${CONFIG_SCRIPT}"
 # http://comments.gmane.org/gmane.linux.arch.general/48739
 echo '==> adding workaround for shutdown race condition'
 /usr/bin/install --mode=0644 poweroff.timer "${TARGET_DIR}/etc/systemd/system/poweroff.timer"
+
+echo '==> creating build info file (/packer_build.yml)'
+echo "packer_box_version: $BOX_VERSION" > /packer_build.yml
+echo "packer_box_name: $BOX_NAME" >> /packer_build.yml
+echo "packer_box_timestamp: $BOX_TIMESTAMP" >> /packer_build.yml
 
 echo '==> installation complete!'
 /usr/bin/sleep 3
