@@ -46,7 +46,7 @@ To get started:
 
     $ git clone https://github.com/jantman/packer-arch-workstation.git
     $ cd packer-arch-workstation/
-    $ bundle install
+    $ bundle install --path vendor
 
 ### VirtualBox Provider
 
