@@ -86,6 +86,9 @@ cat <<-EOF > "${TARGET_DIR}${CONFIG_SCRIPT}"
 	/usr/bin/chown vagrant:users /home/vagrant/.ssh/authorized_keys
 	/usr/bin/chmod 0600 /home/vagrant/.ssh/authorized_keys
 
+	# Puppet and git
+	/usr/bin/pacman -S --noconfirm puppet git augeas lsb-release vim
+
 	# clean up
 	/usr/bin/pacman -Rcns --noconfirm gptfdisk
 	/usr/bin/pacman -Scc --noconfirm
