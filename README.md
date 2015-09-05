@@ -13,6 +13,7 @@ This will eventually merge in some work from other forks and projects as needed:
 
 * Forks of [elasticdog/packer-arch](https://github.com/elasticdog/packer-arch), namely [garsue/packer-arch](https://github.com/garsue/packer-arch), [joelnb/packer-arch](https://github.com/joelnb/packer-arch) and [pedromaltez/packer-arch](https://github.com/pedromaltez/packer-arch)
 * [daimatz/arch64-packer](https://github.com/daimatz/arch64-packer), [medvid/arch-packer](https://github.com/medvid/arch-packer) and [takei-shg/arch64-packer](https://github.com/takei-shg/arch64-packer/tree/jdk)
+* Perhaps some of the work from [terrywang/vagrantboxes](https://github.com/terrywang/vagrantboxes/blob/master/archlinux-x86_64.md)
 
 Overview
 --------
@@ -37,15 +38,23 @@ and the steps recommended for any base box.
 Usage
 -----
 
+## Requirements
+
+This project uses Ruby/Rake to manage building; you'll need to have ruby and [bundler](http://bundler.io/) installed.
+
+To get started:
+
+    $ git clone https://github.com/jantman/packer-arch-workstation.git
+    $ cd packer-arch-workstation/
+    $ bundle install
+
 ### VirtualBox Provider
 
 Assuming that you already have Packer,
 [VirtualBox](https://www.virtualbox.org/), and Vagrant installed, you
 should be good to clone this repo and go:
 
-    $ git clone https://github.com/jantman/packer-arch.git
-    $ cd packer-arch/
-    $ packer build -only=virtualbox-iso arch-template.json
+    $ rake build
 
 Then you can import the generated box into Vagrant:
 
