@@ -1,11 +1,18 @@
-Packer Arch
-===========
+Packer Arch Workstation
+=======================
 
-Packer Arch is a bare bones [Packer](http://www.packer.io/) template and
-installation script that can be used to generate a [Vagrant](http://www.vagrantup.com/)
-base box for [Arch Linux](https://www.archlinux.org/). The template works
-with both the default VirtualBox provider as well as the
-[VMware provider](http://www.vagrantup.com/vmware).
+This project was originally forked from [elasticdog/packer-arch](https://github.com/elasticdog/packer-arch),
+which seemed to be the most popular [Packer](http://www.packer.io/) template to generate a
+[Vagrant](http://www.vagrantup.com/) base box for [Arch Linux](https://www.archlinux.org/). The original
+template was designed to replicate a [DigitalOcean](https://www.digitalocean.com/) Arch Linux droplet;
+my own use case is to test my Puppet-based [archlinux-workstation](https://github.com/jantman/puppet-archlinux-workstation)
+module ecosystem that I use to manage my desktop and laptop; as such, I've made some relatively
+major changes.
+
+This will eventually merge in some work from other forks and projects as needed:
+
+* Forks of [elasticdog/packer-arch](https://github.com/elasticdog/packer-arch), namely [garsue/packer-arch](https://github.com/garsue/packer-arch), [joelnb/packer-arch](https://github.com/joelnb/packer-arch) and [pedromaltez/packer-arch](https://github.com/pedromaltez/packer-arch)
+* [daimatz/arch64-packer](https://github.com/daimatz/arch64-packer), [medvid/arch-packer](https://github.com/medvid/arch-packer) and [takei-shg/arch64-packer](https://github.com/takei-shg/arch64-packer/tree/jdk)
 
 Overview
 --------
@@ -36,7 +43,7 @@ Assuming that you already have Packer,
 [VirtualBox](https://www.virtualbox.org/), and Vagrant installed, you
 should be good to clone this repo and go:
 
-    $ git clone https://github.com/elasticdog/packer-arch.git
+    $ git clone https://github.com/jantman/packer-arch.git
     $ cd packer-arch/
     $ packer build -only=virtualbox-iso arch-template.json
 
@@ -44,58 +51,13 @@ Then you can import the generated box into Vagrant:
 
     $ vagrant box add arch packer_arch_virtualbox.box
 
-### VMware Provider
-
-Assuming that you already have Packer,
-[VMware Fusion](https://www.vmware.com/products/fusion/) (or
-[VMware Workstation](https://www.vmware.com/products/workstation/)), and
-Vagrant with the VMware provider installed, you should be good to clone
-this repo and go:
-
-    $ git clone https://github.com/elasticdog/packer-arch.git
-    $ cd packer-arch/
-    $ packer build -only=vmware-iso arch-template.json
-
-Then you can import the generated box into Vagrant:
-
-    $ vagrant box add arch packer_arch_vmware.box
-
-Known Issues
-------------
-
-### VMware Tools
-
-The official VMware Tools do not currently support Arch Linux, and the
-[Open Virtual Machine Tools](http://open-vm-tools.sourceforge.net/)
-(open-vm-tools) require extensive patching in order to compile correctly
-with a Linux 3.11 series kernel. So for the time being, I have not
-included support for the tools.
-
-No tools means that the shared folder feature will not work, and when you
-run `vagrant up` to launch a VM based on the VMware box, you will see the
-following error message:
-
-> The HGFS kernel module was not found on the running virtual machine.
-> This must be installed for shared folders to work properly. Please
-> install the VMware tools within the guest and try again. Note that
-> the VMware tools installation will succeed even if HGFS fails
-> to properly install. Carefully read the output of the VMware tools
-> installation to verify the HGFS kernel modules were installed properly.
-
-Note that _this issue does not apply to VirtualBox_, as their official
-guest additions work just fine.
-
-### Vagrant Provisioners
-
-The box purposefully does not include Puppet or Chef for automatic Vagrant
-provisioning. My intention was to duplicate a DigitalOcean VPS and
-furthermore use the VM for testing [Ansible](http://www.ansibleworks.com/)
-playbooks for configuration management.
-
 License
 -------
 
-Packer Arch is provided under the terms of the
+The original upstream version of [elasticdog/packer-arch](https://github.com/elasticdog/packer-arch) is provided under the terms of the
 [ISC License](https://en.wikipedia.org/wiki/ISC_license).
 
+This version, and all of my modifications, are provided under the [GNU GPL v3 or Later](http://www.gnu.org/licenses/gpl-3.0.en.html).
+
 Copyright &copy; 2013&#8211;2014, [Aaron Bull Schaefer](mailto:aaron@elasticdog.com).
+Modifications Copyright &copy; 2015, [Jason Antman](mailto:jason@jasonantman.com).
