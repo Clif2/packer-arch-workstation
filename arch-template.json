@@ -23,9 +23,9 @@
             ],
             "disk_size": 20480,
             "hard_drive_interface": "sata",
-            "ssh_username": "root",
+            "ssh_username": "vagrant",
             "ssh_password": "vagrant",
-            "shutdown_command": "systemctl start poweroff.timer",
+            "shutdown_command": "sudo systemctl start poweroff.timer",
             "ssh_wait_timeout": "60m",
             "vboxmanage": [
                 ["modifyvm", "{{.Name}}", "--memory", "2048"],
