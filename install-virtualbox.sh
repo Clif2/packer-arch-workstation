@@ -59,9 +59,8 @@ cat <<-EOF > "${TARGET_DIR}${CONFIG_SCRIPT}"
 	/usr/bin/locale-gen
 	/usr/bin/mkinitcpio -p linux
 	/usr/bin/usermod --password ${PASSWORD} root
-	# enable DHCP ethernet interfaces
-	for i in $(ls -1 /sys/class/net | grep "^enp"); do /usr/bin/ln -s '/usr/lib/systemd/system/dhcpcd@.service' "/etc/systemd/system/multi-user.target.wants/dhcpcd\@${i}.service"; done
-	/usr/bin/systemctl enable systemd-networkd.service
+	# enable DHCP on ethernet interfaces
+	/usr/bin/systemctl enable dhcpcd.service
 	/usr/bin/sed -i 's/#UseDNS yes/UseDNS no/' /etc/ssh/sshd_config
 	/usr/bin/systemctl enable sshd.service
 
