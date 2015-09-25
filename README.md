@@ -15,33 +15,12 @@ This will eventually merge in some work from other forks and projects as needed:
 * [daimatz/arch64-packer](https://github.com/daimatz/arch64-packer), [medvid/arch-packer](https://github.com/medvid/arch-packer) and [takei-shg/arch64-packer](https://github.com/takei-shg/arch64-packer/tree/jdk)
 * Perhaps some of the work from [terrywang/vagrantboxes](https://github.com/terrywang/vagrantboxes/blob/master/archlinux-x86_64.md)
 
-Status
-------
-
-Puppet:
-
-My original install instructions mentioned AUR requirements of ``ruby-augeas`` and ``ruby-r10k``. The [ruby-r10k package](http://webcache.googleusercontent.com/search?q=cache:TI4BTNXI_TYJ:https://aur4.archlinux.org/packages/ruby-r10k/+&cd=1&hl=en&ct=clnk&gl=us)
-had no maintainer and is now gone from AUR (and, as far as I can tell, the pkgbuild with it). I'm not yet sure if puppet 4 (in the community repo) still requires [ruby-augeas](https://aur.archlinux.org/packages/ruby-augeas/). We won't need r10k, as that can be done on the host.
-
-Overview
+Download
 --------
 
-My goal was to roughly duplicate the attributes from a
-[DigitalOcean](https://www.digitalocean.com/) Arch Linux droplet:
+If you just want to use this box for Vagrant/VirtualBox, you can use it from [Atlas](https://atlas.hashicorp.com/jantman/boxes/packer-arch-workstation):
 
-* 64-bit
-* 20 GB disk
-* 512 MB memory
-* Only a single /root partition (ext4)
-* No swap
-* Includes the `base` and `base-devel` package groups
-* OpenSSH is also installed and enabled on boot
-
-The installation script follows the
-[official installation guide](https://wiki.archlinux.org/index.php/Installation_Guide)
-pretty closely, with a few tweaks to ensure functionality within a VM. Beyond
-that, the only customizations to the machine are related to the vagrant user
-and the steps recommended for any base box.
+    vagrant init jantman/packer-arch-workstation; vagrant up --provider virtualbox
 
 Usage
 -----
