@@ -47,6 +47,16 @@ Then you can import the generated box into Vagrant:
 
     $ vagrant box add arch packer_arch_virtualbox.box
 
+Releasing
+----------
+
+1. Commit any git changes; ensure the repo is clean and all changes are committed.
+2. ``bundle exec rake build``
+3. ``s3cmd put packer_arch_virtualbox_$(git rev-parse --short HEAD).box s3://jantman-repo/vagrant-boxes/``
+4. [https://atlas.hashicorp.com/jantman/boxes/packer-arch-workstation](https://atlas.hashicorp.com/jantman/boxes/packer-arch-workstation) - log in, add a new version, add a provider, set the source to the S3 URL. Release the version.
+5. Tag the commit in git with the version.
+6. git push
+
 License
 -------
 
